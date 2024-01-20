@@ -1,0 +1,13 @@
+.idea
+bin/
+target/
+build/
+project/*
+!project/build.properties
+!project/plugins.sbt
+
+*.class
+*.log
+*.iml
+*.ipr
+*.iws

@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+
+  postgresql:
+    image: docker-proxy.artifactory.tcsbank.ru/postgres:12
+    environment:
+      POSTGRES_USER: lms
+      POSTGRES_PASSWORD: lms
+      POSTGRES_DB: lms
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - dataForScala:/var/lib/postgresql/data:Z
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U lms" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 8432:5432
+
+volumes:
+  dataForScala:
+    external: true
